@@ -7,6 +7,18 @@
         Width="600"
         Height="250"
         mc:Ignorable="d">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Dark" >
+                    <SolidColorBrush x:Key="Background" Color="#303e56"></SolidColorBrush>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Light" >
+                    <SolidColorBrush x:Key="Background" Color="#e9f1fc"></SolidColorBrush>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Window.Styles>
         <Style Selector="ToggleButton.fancy /template/ Path.cloud">
             <Setter Property="HorizontalAlignment" Value="Center" />
@@ -129,18 +141,15 @@
             <Setter Property="Background" Value="#191c25" />
         </Style>
         <Style Selector="Panel#bg">
-            <Setter Property="Background" Value="#e9f1fc" />
+            <Setter Property="Background" Value="{DynamicResource Background}" />
             <Setter Property="Transitions">
                 <Transitions>
                     <BrushTransition Property="Background" Duration="0:0:0.35" />
                 </Transitions>
             </Setter>
         </Style>
-        <Style Selector="Panel.dark#bg">
-            <Setter Property="Background" Value="#303e56" />
-        </Style>
     </Window.Styles>
-    <Panel Name="bg" Classes.dark="{Binding #themeSwitch.IsChecked}">
-        <ToggleButton Name="themeSwitch" Classes="fancy" />
+    <Panel Name="bg">
+        <ToggleButton Name="themeSwitch" Classes="fancy" IsCheckedChanged="ThemeSwitch_OnIsCheckedChanged" />
     </Panel>
 </Window>
